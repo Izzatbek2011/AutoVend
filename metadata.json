@@ -1,0 +1,6 @@
+{
+  "name": "AutoVend 2.0 - Dropshipping Automation Platform",
+  "description": "Production-ready dropshipping automation platform featuring multi-supplier management (AliExpress, Alibaba, 1688), AI product analyst, automated pricing and repricing, real-time inventory synchronization, automated fulfillment, and smart rules.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
