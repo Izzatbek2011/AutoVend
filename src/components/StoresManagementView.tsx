@@ -117,7 +117,7 @@ export const StoresManagementView: React.FC = () => {
                   <div className="flex items-center gap-2.5">
                     <span className={`w-3 h-3 rounded-full ${getPlatformColor()}`}></span>
                     <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">
-                      {s.platform.replace('_', ' ').toUpperCase()}
+                      {(s.platform || 'Store').replace('_', ' ').toUpperCase()}
                     </span>
                   </div>
 

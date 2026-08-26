@@ -208,14 +208,14 @@ export const PricingRulesView: React.FC = () => {
                 <div className="flex items-center justify-between mb-2">
                   <span
                     className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${
-                      rule.ruleType === 'multiplier'
+                      rule?.ruleType === 'multiplier'
                         ? 'bg-purple-100 text-purple-700'
-                        : rule.ruleType === 'tiered'
+                        : rule?.ruleType === 'tiered'
                         ? 'bg-indigo-100 text-indigo-700'
                         : 'bg-emerald-100 text-emerald-700'
                     }`}
                   >
-                    {rule.ruleType.replace('_', ' ').toUpperCase()}
+                    {(rule?.ruleType || 'RULE').replace('_', ' ').toUpperCase()}
                   </span>
 
                   <label className="flex items-center gap-2 cursor-pointer select-none">

@@ -15,6 +15,7 @@ import { api } from '../services/api';
 
 export type NavigationTab =
   | 'dashboard'
+  | 'find_suppliers'
   | 'importer'
   | 'import_list'
   | 'products'
@@ -25,7 +26,8 @@ export type NavigationTab =
   | 'automation_rules'
   | 'ai_analyst'
   | 'stores'
-  | 'storefront_sandbox';
+  | 'storefront_sandbox'
+  | 'supplier_settings';
 
 export interface ToastMessage {
   id: string;
@@ -371,7 +373,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setStores((prev) => [...prev, created]);
       addToast({
         title: 'Store Linked',
-        message: `Successfully connected ${created.name} (${created.platform.toUpperCase()}).`,
+        message: `Successfully connected ${created.name} (${(created.platform || 'Store').toUpperCase()}).`,
         type: 'success',
       });
     } catch (err) {

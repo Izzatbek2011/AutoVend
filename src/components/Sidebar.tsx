@@ -15,6 +15,8 @@ import {
   Compass,
   Zap,
   Layers,
+  Globe2,
+  KeyRound,
 } from 'lucide-react';
 
 interface NavItem {
@@ -40,18 +42,19 @@ export const Sidebar: React.FC = () => {
       ],
     },
     {
-      category: 'Sourcing & Products',
+      category: 'Supplier Marketplace',
       items: [
-        { id: 'importer', label: 'Product Importer', icon: DownloadCloud },
+        { id: 'find_suppliers', label: 'Find Suppliers & Whitelist', icon: Globe2, badge: 'Live Ali / 1688', badgeColor: 'bg-gradient-to-r from-rose-500 via-amber-500 to-indigo-500 text-white font-bold' },
+        { id: 'importer', label: 'URL & Web Importer', icon: DownloadCloud },
         {
           id: 'import_list',
-          label: 'Import List',
+          label: 'Import List (Push to Store)',
           icon: ListPlus,
           badge: importQueue.length > 0 ? importQueue.length : undefined,
-          badgeColor: 'bg-indigo-600 text-white',
+          badgeColor: 'bg-indigo-600 text-white font-bold',
         },
         { id: 'products', label: 'My Products & Mapping', icon: PackageCheck },
-        { id: 'suppliers_compare', label: 'Supplier Comparison', icon: Scale, badge: 'Ali vs 1688', badgeColor: 'bg-amber-100 text-amber-800' },
+        { id: 'suppliers_compare', label: 'Supplier Quote Matrix', icon: Scale, badge: 'Arbitrage', badgeColor: 'bg-amber-100 text-amber-800' },
       ],
     },
     {
@@ -59,7 +62,7 @@ export const Sidebar: React.FC = () => {
       items: [
         {
           id: 'orders',
-          label: 'Orders & Fulfillment',
+          label: 'Orders & 1-Click Dispatch',
           icon: ShoppingBag,
           badge: awaitingOrdersCount > 0 ? awaitingOrdersCount : undefined,
           badgeColor: 'bg-rose-500 text-white',
@@ -76,9 +79,10 @@ export const Sidebar: React.FC = () => {
       ],
     },
     {
-      category: 'Store Integrations & Test',
+      category: 'Store Integrations & Gateways',
       items: [
         { id: 'stores', label: 'Multi-Store Manager', icon: Store },
+        { id: 'supplier_settings', label: 'Supplier API & Gateways', icon: KeyRound, badge: 'Connected', badgeColor: 'bg-emerald-500/20 text-emerald-300' },
         { id: 'storefront_sandbox', label: 'Storefront Sandbox', icon: Compass, badge: 'Live Sim', badgeColor: 'bg-emerald-500 text-white' },
       ],
     },

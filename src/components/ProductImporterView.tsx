@@ -170,7 +170,7 @@ export const ProductImporterView: React.FC = () => {
             <input
               id="importer-url-input"
               type="url"
-              placeholder={`Paste any ${selectedPlatform.toUpperCase()} product URL (e.g. https://${selectedPlatform}.com/item/100500...)`}
+              placeholder={`Paste any ${(selectedPlatform || 'aliexpress').toUpperCase()} product URL (e.g. https://${selectedPlatform || 'aliexpress'}.com/item/100500...)`}
               value={inputUrl}
               onChange={(e) => setInputUrl(e.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all outline-hidden"
@@ -223,24 +223,34 @@ export const ProductImporterView: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h4 className="text-sm font-bold text-white">AutoVend Chrome Extension Simulation</h4>
+              <h4 className="text-sm font-bold text-white">DSers Live Supplier Marketplace & Extension</h4>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">
                 Connected & Active
               </span>
             </div>
             <p className="text-xs text-slate-300 mt-0.5">
-              Browsing supplier sites directly? The AutoVend 1-Click button appears right on AliExpress, Alibaba, and 1688 product pages for instant store synchronization.
+              Browse millions of verified supplier items directly with live stock & price feeds, or use our in-app supplier browser to import from AliExpress, Alibaba, and 1688 with 1-click.
             </p>
           </div>
         </div>
 
-        <button
-          id="test-extension-sim-btn"
-          onClick={() => handleImport('https://aliexpress.com/item/10050098410294.html', 'aliexpress')}
-          className="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-xs font-semibold text-white whitespace-nowrap transition-colors"
-        >
-          Simulate 1-Click Extension Grab
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            id="open-find-suppliers-banner-btn"
+            onClick={() => setActiveTab('find_suppliers')}
+            className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold text-white shadow-md shadow-indigo-600/30 flex items-center gap-1.5 transition-all"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            Open Live Marketplace
+          </button>
+          <button
+            id="test-extension-sim-btn"
+            onClick={() => handleImport('https://aliexpress.com/item/10050098410294.html', 'aliexpress')}
+            className="px-3 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-xs font-semibold text-white whitespace-nowrap transition-colors"
+          >
+            Simulate 1-Click Extension Grab
+          </button>
+        </div>
       </div>
 
       {/* High-Converting Trending Winning Products */}
@@ -276,7 +286,7 @@ export const ProductImporterView: React.FC = () => {
                           : 'bg-indigo-600 text-white'
                       }`}
                     >
-                      {preset.platform.toUpperCase()}
+                      {(preset?.platform || 'ALIEXPRESS').toString().toUpperCase()}
                     </span>
                   </div>
                   <div className="absolute top-2.5 right-2.5 bg-slate-900/80 backdrop-blur-xs text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">

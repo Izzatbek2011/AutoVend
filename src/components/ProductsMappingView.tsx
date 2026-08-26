@@ -53,7 +53,7 @@ export const ProductsMappingView: React.FC = () => {
       await refreshData();
       addToast({
         title: 'Supplier Mapping Re-Routed',
-        message: `Variant successfully re-routed to ${newPlatform.toUpperCase()}. All future customer checkouts will dispatch here.`,
+        message: `Variant successfully re-routed to ${(newPlatform || 'Supplier').toUpperCase()}. All future customer checkouts will dispatch here.`,
         type: 'success',
       });
     } catch (err) {
@@ -141,7 +141,7 @@ export const ProductsMappingView: React.FC = () => {
                     <h3 className="text-sm font-bold text-slate-900 truncate max-w-xl">{prod.title}</h3>
                     <div className="text-[11px] text-slate-500 flex items-center gap-3 mt-0.5">
                       <span>Variants: <strong className="text-slate-800">{prod.variants.length}</strong></span>
-                      <span>Primary Sourcing: <strong className="text-slate-800">{prod.primarySupplier.name} ({prod.primarySupplier.platform.toUpperCase()})</strong></span>
+                      <span>Primary Sourcing: <strong className="text-slate-800">{prod.primarySupplier?.name || 'Primary Supplier'} ({(prod.primarySupplier?.platform || 'ALIEXPRESS').toUpperCase()})</strong></span>
                       <span className="text-emerald-600 font-bold">Margin: {prod.profitMargin}%</span>
                     </div>
                   </div>

@@ -12,6 +12,8 @@ import {
   Layers,
   Search,
   Zap,
+  Globe2,
+  KeyRound,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -85,7 +87,7 @@ export const Header: React.FC = () => {
                 {activeStore ? activeStore.name : 'All Channels (4 Stores)'}
               </span>
               <span className="text-[10px] text-slate-500 block truncate">
-                {activeStore ? `${activeStore.platform.toUpperCase()} • Live Sync` : 'Unified Aggregator'}
+                {activeStore ? `${(activeStore.platform || 'Store').toUpperCase()} • Live Sync` : 'Unified Aggregator'}
               </span>
             </div>
             <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${storeMenuOpen ? 'rotate-180' : ''}`} />
@@ -188,6 +190,17 @@ export const Header: React.FC = () => {
 
       {/* Right: Actions & Tools */}
       <div className="flex items-center gap-2.5">
+        {/* Find Suppliers / Whitelist Quick Link */}
+        <button
+          id="header-find-suppliers-btn"
+          onClick={() => setActiveTab('find_suppliers')}
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition-colors shadow-2xs"
+          title="Browse AliExpress, Alibaba, and 1688 Live Catalog"
+        >
+          <Globe2 className="w-3.5 h-3.5 text-indigo-600" />
+          <span className="hidden md:inline">Find Suppliers</span>
+        </button>
+
         {/* Live Inventory Sync Button */}
         <button
           id="header-sync-inventory-btn"

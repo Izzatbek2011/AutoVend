@@ -9,6 +9,8 @@ import {
   AutomationRule,
   AnalyticsSummary,
   SystemNotification,
+  MarketplaceProduct,
+  SupplierGatewayConfig,
 } from '../types';
 
 export const api = {
@@ -318,4 +320,75 @@ export const api = {
     });
     return res.json();
   },
+
+  // Supplier Marketplace (AliExpress, Alibaba, 1688 Live Catalog)
+  async getMarketplaceProducts(params?: {
+    keyword?: string;
+    platform?: string;
+    category?: string;
+    shipsFrom?: string;
+    fastShipping?: boolean;
+    minRating?: number;
+    moq1?: boolean;
+    highMargin?: boolean;
+  }): Promise<{ total: number; products: MarketplaceProduct[] }> {
+    const query = new URLSearchParams();
+    if (params?.keyword) query.set('keyword', params.keyword);
+    if (params?.platform) query.set('platform', params.platform);
+    if (params?.category) query.set('category', params.category);
+    if (params?.shipsFrom) query.set('shipsFrom', params.shipsFrom);
+    if (params?.fastShipping) query.set('fastShipping', 'true');
+    if (params?.minRating) query.set('minRating', params.minRating.toString());
+    if (params?.moq1) query.set('moq1', 'true');
+    if (params?.highMargin) query.set('highMargin', 'true');
+
+    const res = await fetch(`/api/suppliers/marketplace?${query.toString()}`);
+    return res.json();
+  },
+
+  async getMarketplaceProductById(id: string): Promise<MarketplaceProduct> {
+    const res = await fetch(`/api/suppliers/marketplace/${id}`);
+    return res.json();
+  },
+
+  async importMarketplaceProduct(payload: {
+    productId: string;
+    autoAiEnhance?: boolean;
+  }): Promise<{ success: boolean; item: ImportQueueItem }> {
+    const res = await fetch('/api/suppliers/import-marketplace-item', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    return res.json();
+  },
+
+  async getSupplierGatewayConfig(): Promise<SupplierGatewayConfig> {
+    const res = await fetch('/api/suppliers/api-keys');
+    return res.json();
+  },
+
+  async updateSupplierGatewayConfig(config: Partial<SupplierGatewayConfig>): Promise<SupplierGatewayConfig> {
+    const res = await fetch('/api/suppliers/api-keys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(config),
+    });
+    return res.json();
+  },
+
+  async testSupplierGatewayPing(platform: 'aliexpress' | 'alibaba' | 's1688'): Promise<{
+    platform: string;
+    status: 'connected' | 'error';
+    latencyMs: number;
+    message: string;
+  }> {
+    const res = await fetch('/api/suppliers/test-connection', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ platform }),
+    });
+    return res.json();
+  },
 };
+

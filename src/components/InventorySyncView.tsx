@@ -123,14 +123,14 @@ export const InventorySyncView: React.FC = () => {
                   <td className="py-3.5 px-4">
                     <span
                       className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                        log.eventType === 'price_change'
+                        log?.eventType === 'price_change'
                           ? 'bg-amber-100 text-amber-800'
-                          : log.eventType === 'stock_update'
+                          : log?.eventType === 'stock_update'
                           ? 'bg-sky-100 text-sky-800'
                           : 'bg-emerald-100 text-emerald-800'
                       }`}
                     >
-                      {log.eventType.replace('_', ' ').toUpperCase()}
+                      {(log?.eventType || 'SYNC').replace('_', ' ').toUpperCase()}
                     </span>
                   </td>
                   <td className="py-3.5 px-4 font-medium text-slate-600">{log.oldValue}</td>

@@ -16,6 +16,8 @@ import { AutomationRulesView } from './components/AutomationRulesView';
 import { AiAnalystView } from './components/AiAnalystView';
 import { StoresManagementView } from './components/StoresManagementView';
 import { StorefrontSimulatorView } from './components/StorefrontSimulatorView';
+import { FindSuppliersView } from './components/FindSuppliersView';
+import { SupplierSettingsView } from './components/SupplierSettingsView';
 import { Loader2 } from 'lucide-react';
 
 const MainContent: React.FC = () => {
@@ -34,6 +36,8 @@ const MainContent: React.FC = () => {
     switch (activeTab) {
       case 'dashboard':
         return <DashboardView />;
+      case 'find_suppliers':
+        return <FindSuppliersView />;
       case 'importer':
         return <ProductImporterView />;
       case 'import_list':
@@ -54,6 +58,8 @@ const MainContent: React.FC = () => {
         return <AiAnalystView />;
       case 'stores':
         return <StoresManagementView />;
+      case 'supplier_settings':
+        return <SupplierSettingsView />;
       case 'storefront_sandbox':
         return <StorefrontSimulatorView />;
       default:

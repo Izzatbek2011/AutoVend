@@ -157,7 +157,7 @@ export const ImportListView: React.FC = () => {
             >
               {stores.map((s) => (
                 <option key={s.id} value={s.id}>
-                  {s.name} ({s.platform.toUpperCase()})
+                  {s.name} ({(s.platform || 'Store').toUpperCase()})
                 </option>
               ))}
             </select>
@@ -237,7 +237,7 @@ export const ImportListView: React.FC = () => {
                             : 'bg-indigo-600 text-white'
                         }`}
                       >
-                        {item.sourcePlatform.toUpperCase()}
+                        {(item.sourcePlatform || 'ALIEXPRESS').toString().toUpperCase()}
                       </span>
                       <span className="text-xs text-slate-500">{item.supplierName}</span>
                       {item.aiEnhanced && (

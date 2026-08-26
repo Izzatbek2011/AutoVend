@@ -273,3 +273,78 @@ export interface SystemNotification {
   read: boolean;
   actionUrl?: string;
 }
+
+export interface MarketplaceProduct {
+  id: string;
+  title: string;
+  category: string;
+  platform: Platform;
+  supplierName: string;
+  supplierRating: number;
+  supplierBadge: string;
+  supplierOrders: number;
+  supplierYears?: number;
+  location: string;
+  shipsFrom: string[];
+  images: string[];
+  unitCost: number;
+  suggestedRetail: number;
+  profitMargin: number;
+  moq: number;
+  shippingCost: number;
+  shippingDays: string;
+  shippingCarrier: string;
+  dispatchTime: string;
+  variantsCount: number;
+  samplePrice?: number;
+  hasVideo?: boolean;
+  score: number;
+  specs: { [key: string]: string };
+  variants: {
+    id: string;
+    sku: string;
+    name: string;
+    image: string;
+    cost: number;
+    suggestedRetail: number;
+    stock: number;
+  }[];
+  reviews: {
+    author: string;
+    country: string;
+    rating: number;
+    date: string;
+    comment: string;
+    images?: string[];
+  }[];
+  sourceUrl: string;
+}
+
+export interface SupplierGatewayConfig {
+  aliexpress: {
+    appKey: string;
+    appSecret: string;
+    accessToken: string;
+    status: 'connected' | 'disconnected' | 'pending';
+    lastPingMs?: number;
+    whitelistEnabled: boolean;
+    autoSyncStock: boolean;
+  };
+  alibaba: {
+    partnerId: string;
+    apiSecret: string;
+    tradeAssurance: boolean;
+    status: 'connected' | 'disconnected' | 'pending';
+    lastPingMs?: number;
+    autoEscrow: boolean;
+  };
+  s1688: {
+    appKey: string;
+    agentId: string;
+    currencyConversion: 'USD' | 'EUR' | 'GBP';
+    status: 'connected' | 'disconnected' | 'pending';
+    lastPingMs?: number;
+    autoTranslate: boolean;
+  };
+}
+

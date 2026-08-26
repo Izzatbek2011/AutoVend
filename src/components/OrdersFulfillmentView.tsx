@@ -315,14 +315,14 @@ export const OrdersFulfillmentView: React.FC = () => {
                         <div className="flex items-center gap-1.5 mb-1">
                           <span
                             className={`text-[9px] uppercase font-extrabold px-1.5 py-0.5 rounded text-white ${
-                              ord.supplierPlatform === 'alibaba'
+                              ord?.supplierPlatform === 'alibaba'
                                 ? 'bg-amber-500'
-                                : ord.supplierPlatform === '1688'
+                                : ord?.supplierPlatform === '1688'
                                 ? 'bg-indigo-600'
                                 : 'bg-rose-500'
                             }`}
                           >
-                            {ord.supplierPlatform.toUpperCase()}
+                            {(ord?.supplierPlatform || ord?.platform || 'ALIEXPRESS').toString().toUpperCase()}
                           </span>
                           <span className="text-[10px] text-slate-600 truncate">{ord.supplierName}</span>
                         </div>
@@ -467,7 +467,9 @@ export const OrdersFulfillmentView: React.FC = () => {
               {/* Logistics & Tracking info */}
               <div className="bg-indigo-50/50 rounded-xl p-4 border border-indigo-100 space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-indigo-950">Supplier Gateway: {activeOrderDetail.supplierPlatform.toUpperCase()}</span>
+                  <span className="font-bold text-indigo-950">
+                    Supplier Gateway: {(activeOrderDetail?.supplierPlatform || activeOrderDetail?.platform || 'ALIEXPRESS').toString().toUpperCase()}
+                  </span>
                   <span className="font-mono text-slate-600">ID: {activeOrderDetail.supplierOrderId || 'Pending Placement'}</span>
                 </div>
                 {activeOrderDetail.trackingNumber && (
